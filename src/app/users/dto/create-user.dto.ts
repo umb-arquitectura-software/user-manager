@@ -12,16 +12,20 @@ export class CreateUserDto {
   password?: string;
 
   @IsString()
-  name: string;
+  username: string;
 
   @IsString()
-  cell_phone: string;
+  firstName: string;
+
+  @IsString()
+  lastName: string;
+
+  @IsString()
+  cellPhone: string;
 
   @IsNumber()
   incremental?: number;
 
-  @IsString()
-  nit?: string;
 
   @IsArray()
   roles?: string[];

@@ -13,16 +13,19 @@ export class User {
   password: string;
 
   @Prop({ required: true})
-  name: string;
+  username: string;
+
+  @Prop({ required: true})
+  firstName: string;
+
+  @Prop({ required: true})
+  lastName: string;
 
   @Prop({ required: false})
-  cell_phone: string;
+  cellPhone: string;
 
   @Prop({ required: true, unique: true})
   incremental: number;
-
-  @Prop({ required: false})
-  nit: string;
 
   @Prop({ type: [mongoose.Schema.Types.ObjectId], ref: 'Rol', required: true })
   roles: string[];

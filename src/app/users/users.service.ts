@@ -25,10 +25,23 @@ export class UsersService {
 
   async create(createUserDto: CreateUserDto) {
     if (!createUserDto.email) throw new BadRequestException('email-required', 'Correo obligatorio');
-    if (!createUserDto.name) throw new BadRequestException('name-required', 'Nombre obligatoria');
+    if (!createUserDto.username) throw new BadRequestException('username-required', 'Nombre de usuario obligatorio');
+    if (!createUserDto.firstName) throw new BadRequestException('firstName-required', 'Nombre es obligatorio');
+    if (!createUserDto.lastName) throw new BadRequestException('lastName-required', 'Apellido es obligatorio');
+    if (!createUserDto.lastName) throw new BadRequestException('lastName-required', 'Apellido es obligatorio');
 
-    const user_repeat_email = await this.UserModel.findOne({email: createUserDto.email});
-    if (user_repeat_email?._id) throw new BadRequestException('email-already-exists', 'El correo ya se encuentra registrado');
+    await Promise.all([
+      ( async () => {
+        const username_repeat = await this.UserModel.findOne({username: createUserDto.username});
+        if (username_repeat?._id) throw new BadRequestException('username-already-exists', 'El nombre de usuario ya se encuentra registrado');
+    
+      }),
+      ( async () => {
+        const user_repeat_email = await this.UserModel.findOne({email: createUserDto.email});
+        if (user_repeat_email?._id) throw new BadRequestException('email-already-exists', 'El correo ya se encuentra registrado');
+      })
+    ])
+
 
     const last_user = await this.UserModel.find().sort({ incremental: -1 }).limit(1).select('incremental').exec();
 
