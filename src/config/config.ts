@@ -4,5 +4,6 @@ export const config = (): ConfigProps => ({
     database: {
       connectionString: process.env.MONGODB_CONNECTION_STRING || 'mongodb://localhost:27017',
     }
-  }
+  },
+  defaultRole: process.env.DEFAULT_ROLE || 'user'
 });

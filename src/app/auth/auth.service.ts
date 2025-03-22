@@ -29,7 +29,7 @@ export class AuthService {
     delete user.password;
 
     return {
-      permissions: await this.cacheRolesPermissions(user?.roles),
+      permissions: user?.roles?.length ? await this.cacheRolesPermissions(user?.roles) : [],
       user: user,
       access_token: this.jwtService.sign(payload),
     };

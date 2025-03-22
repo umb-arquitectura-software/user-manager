@@ -9,6 +9,7 @@ import { User } from 'src/schemas/user.schema';
 import * as bcrypt from 'bcrypt';
 import { RolService } from '../rol/rol.service';
 import { CacheService } from '../services/cache/cache.service';
+import { config } from 'src/config/config';
 
 @Injectable()
 export class UsersService {
@@ -35,7 +36,7 @@ export class UsersService {
 
     const [password, rol] = await Promise.all([
       bcrypt.hash(createUserDto?.password || createUserDto.email, 8),
-      this.rolService.findOneByName('cliente')
+      this.rolService.findOneByName(config().defaultRole)
     ]);
 
     const roles = createUserDto?.roles || []
