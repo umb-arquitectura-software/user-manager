@@ -4,7 +4,7 @@ import mongoose, { HydratedDocument } from 'mongoose';
 export type PermissionDocument = HydratedDocument<Permission>;
 
 
-@Schema()
+@Schema({ timestamps: true })
 export class Permission {
   @Prop({ required: true, unique: true})
   name: string;

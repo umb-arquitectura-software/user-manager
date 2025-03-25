@@ -4,7 +4,7 @@ import mongoose, { HydratedDocument } from 'mongoose';
 export type RolDocument = HydratedDocument<Rol>;
 
 
-@Schema()
+@Schema({ timestamps: true })
 export class Rol {
   @Prop({ required: true, unique: true})
   name: string;
