@@ -14,7 +14,7 @@ export class GoogleStrategy extends PassportStrategy(Strategy, 'google') {
   async validate(req: Request & { body: {email: string} }): Promise<any> {
     const { email } = req.body;
     if (!email) throw new UnauthorizedException('email-required', 'Correo obligatorio');
-    let user = await this.usersService.findOne({email});
+    let user = await this.usersService.findOneByEmail(email);
     if (!user?._id) throw new UnauthorizedException('user_not_found', 'El usuario no existe');
 
     return user;

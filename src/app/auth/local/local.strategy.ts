@@ -9,8 +9,8 @@ export class LocalStrategy extends PassportStrategy(Strategy, 'local') {
     super();
   }
 
-  async validate(req: Request & { body: {email: string, password: string} }): Promise<any> {
-    const user = await this.authService.validateUser(req?.body?.email, req?.body?.password);
+  async validate(req: Request & { body: {username: string, password: string} }): Promise<any> {
+    const user = await this.authService.validateUser(req?.body?.username, req?.body?.password);
     if (!user) throw new UnauthorizedException('user_not_found', 'Correo o contraseña incorrectos');
     return user;
   }

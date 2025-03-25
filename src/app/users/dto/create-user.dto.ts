@@ -26,7 +26,6 @@ export class CreateUserDto {
   @IsNumber()
   incremental?: number;
 
-
   @IsArray()
   roles?: string[];
 

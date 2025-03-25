@@ -73,8 +73,14 @@ export class UsersService {
     return this.UserModel.find().select('-password').exec();
   }
 
-  async findOne(_params: { _id?: string, email?: string }) {
+  async findOne(_params: { _id?: string, username?: string }) {
     const user = await this.UserModel.findOne(_params).exec();
+
+    return user;
+  }
+
+  async findOneByEmail(email: string) {
+    const user = await this.UserModel.findOne({ email }).exec();
 
     return user;
   }

@@ -13,12 +13,11 @@ export class AuthService {
     private rolService: RolService
   ) {}
 
-  async validateUser(email: string, pass: string): Promise<any> {
-    const user = await this.usersService.findOne({ email: email });
+  async validateUser(username: string, pass: string): Promise<any> {
+    const user = await this.usersService.findOne({ username: username });
     if (!user) return null;
 
     const passwordMatches = await bcrypt.compare(pass, user.password);
-
     if (passwordMatches) return user;
 
     return null;
