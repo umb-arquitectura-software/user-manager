@@ -6,7 +6,7 @@ import { Model } from 'mongoose';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from 'src/schemas/user.schema';
-import * as bcrypt from 'bcrypt';
+import * as bcrypt from 'bcryptjs';
 import { RolService } from '../rol/rol.service';
 import { CacheService } from '../services/cache/cache.service';
 import { config } from 'src/config/config';

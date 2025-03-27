@@ -3,7 +3,6 @@ import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { UsersService } from '../../users/users.service';
 import { AuthService } from '../auth.service';
 import { Strategy } from 'passport-custom';
-import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class GoogleStrategy extends PassportStrategy(Strategy, 'google') {
